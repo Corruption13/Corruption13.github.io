@@ -22,7 +22,7 @@
 <meta property="og:title" content="">
 <meta property="og:description" content="">
 <meta property="og:image" content="">
-<meta property="og:url" content="http://6b50456.grapedrop.com">
+<meta property="og:url" content="#">
 
 <!-- Twitter Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
@@ -87,48 +87,5 @@
 </a>
             </body>
 
-    <script>
-        var formStateName = 'data-form-state';
-        var formStateEls = $('[' + formStateName + ']');
-        formStateEls.hide();
-        $('form').submit(function(e) {
-            e.preventDefault();
-            var form = $(this);
-            var action = (this.getAttribute('action') || '').trim();
-            var formData = new FormData(this);
-            var chkSelected = {};
-            var name = this.getAttribute('name');
-            name && formData.append('__name', name);
-
-            form.find('[type=radio], [type=checkbox]').each(function(item) {
-                var chkName = this.name;
-                if (this.checked) {
-                    chkSelected[chkName] = 1;
-                    return;
-                }
-                chkSelected[chkName] = 0;
-            });
-
-            for (var chk in chkSelected) {
-                if (!chkSelected[chk]) {
-                    formData.append(chk, '');
-                }
-            }
-
-            $.ajax({
-                url: action,
-                method: 'POST',
-                processData: false,
-                contentType: false,
-                data: formData,
-            }).done(function(data) {
-                formStateEls.hide();
-                form.find('> *').fadeOut();
-                form.find('[' + formStateName + '=success]').stop(1).fadeIn();
-            }).fail(function(data) {
-                formStateEls.hide();
-                form.find('[' + formStateName + '=error]').stop(1).fadeIn().delay(3000).fadeOut();
-            });
-        });
-    </script>
+ 
 </html>
